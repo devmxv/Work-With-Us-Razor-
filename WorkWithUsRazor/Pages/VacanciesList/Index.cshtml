@@ -5,7 +5,7 @@
 <br/>
 <div class="container row p-0 m-0">
     <div class="col-6">
-        <h2 class="text-info">Book List</h2>
+        <h2 class="text-info">Work with us!</h2>
     </div>
     <div class="col-3">
         <a asp-page="Create" class="btn btn-info form-control text-white">Open Vacancy</a>
@@ -16,11 +16,52 @@
 
     <div class="col-12 border p-3 m-3">
         <form method="post">
-            <table class="table table-striped border">
-                <thead>
-                    <label asp-for="Vacancies.FirstOrDefault().Description"></label>
-                </thead>
-            </table>
+            @if (Model.Vacancies.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr>
+                        <th>
+                            <label asp-for="Vacancies.FirstOrDefault().Name"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Vacancies.FirstOrDefault().Description"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Vacancies.FirstOrDefault().Category"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Vacancies.FirstOrDefault().Salary"></label>
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.Vacancies)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Salary)
+                            </td>
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"></button>
+                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </table>
+            } else
+            {
+                <p>No Vacancies available. Please check later.</p>
+            }
+
         </form>
     </div>
 
