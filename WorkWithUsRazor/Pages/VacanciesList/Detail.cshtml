@@ -1,0 +1,19 @@
+﻿@page
+@model WorkWithUsRazor.Pages.VacanciesList.DetailModel
+
+<div class="col-12 border p-3 m-3">
+
+    <h3>Job Details</h3>
+    
+    <p><strong>Name of Vacancy:</strong></p>
+    <p>@Html.DisplayName(Model.Vacancy.Name)</p>
+    <p><strong>Description:</strong></p>
+    <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Vacancy.Description))</p>
+    <p><strong>Salary:</strong></p>
+    <p>$@Html.DisplayName(Model.Vacancy.Salary.ToString()) USD</p>
+    <p><strong>Category:</strong></p>
+    <p>@Html.DisplayName(Model.Vacancy.Category)</p>
+
+    <a asp-page="Index" class="btn btn-lg btn-danger text-white">Go Back to List</a>
+
+</div>
