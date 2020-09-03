@@ -28,5 +28,20 @@ namespace WorkWithUsRazor.Pages.VacanciesList
             //---Retrieve all Vacancies stored
             Vacancies = await _db.Vacancy.ToListAsync();
         }
+
+        //---Delete of vacancies
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            //---Find the book
+            var vacancy = await _db.Vacancy.FindAsync(id);
+            if(vacancy == null)
+            {
+                return NotFound();
+            }
+            _db.Vacancy.Remove(vacancy);
+            await _db.SaveChangesAsync();
+
+            return RedirectToPage("Index");
+        }
     }
 }
