@@ -32,6 +32,9 @@
                         <th>
                             <label asp-for="Vacancies.FirstOrDefault().Salary"></label>
                         </th>
+                        <th>
+                            Actions
+                        </th>
                     </tr>
                     @foreach (var item in Model.Vacancies)
                     {
@@ -40,7 +43,8 @@
                                 @Html.DisplayFor(m => item.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => item.Description)
+                                
+                                @Html.Raw(System.Net.WebUtility.HtmlDecode(item.Description))
                             </td>
                             <td>
                                 @Html.DisplayFor(m => item.Category)
@@ -49,7 +53,7 @@
                                 @Html.DisplayFor(m => item.Salary)
                             </td>
                             <td>
-                                <button asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"></button>
+                                <button asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</button>
                                 <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
                             </td>
                         </tr>
