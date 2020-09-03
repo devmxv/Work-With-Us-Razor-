@@ -1,0 +1,76 @@
+﻿@page
+@model WorkWithUsRazor.Pages.VacanciesList.UpsertModel
+
+<br />
+<h2 class="text-info">@(Model.Vacancy.Id != 0 ? "Edit" : "Create") New Book</h2>
+<br />
+
+<div class="border container" style="padding:30px">
+    <form method="post">
+        @if (Model.Vacancy.Id != 0)
+        {
+            <input type="hidden" asp-for="Vacancy.Id" />
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Vacancy.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Vacancy.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Vacancy.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Vacancy.Description"></label>
+            </div>
+            <div class="col-6">
+                <textarea id="description" asp-for="Vacancy.Description" class="form-control"></textarea>
+            </div>
+            <span asp-validation-for="Vacancy.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Vacancy.Category"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Vacancy.Category" class="form-control" />
+            </div>
+            <span asp-validation-for="Vacancy.Category" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Vacancy.Salary"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Vacancy.Salary" class="form-control" />
+            </div>
+            <span asp-validation-for="Vacancy.Salary" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Vacancy.Comment"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Vacancy.Comment" class="form-control" />
+            </div>
+            <span asp-validation-for="Vacancy.Comment" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 offset-3">
+                <button type="submit" class="btn btn-primary form-control">@(Model.Vacancy.Id != 0 ? "Update" : "Create")</button>
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
